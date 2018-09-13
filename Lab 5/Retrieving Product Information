@@ -1,0 +1,3 @@
+-- select ProductID and use the appropriate functions with the appropriate columns
+SELECT ProductID, Upper(Name) AS ProductName, Round(Weight, 0) AS ApproxWeight
+FROM SalesLT.Product;
