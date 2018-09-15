@@ -36,5 +36,3 @@ Q7-
 Update Region
 SET RegionDescription=UPPER(RegionDescription);
 SELECT * FROM Region;
-
-Q8-
