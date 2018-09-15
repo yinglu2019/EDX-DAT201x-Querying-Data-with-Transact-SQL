@@ -1,0 +1,48 @@
+Q1-
+SELECT OrderID,UnitPrice FROM [Order Details]
+
+Q2-
+SELECT OrderID, FirstName
+From Orders join Employees
+on Orders.EmployeeID=Employees.EmployeeID
+
+Q3-
+SELECT E.EmployeeID,T.TerritoryDescription
+From Employees as E join EmployeeTerritories as ET
+on E.EmployeeID=ET.EmployeeID
+join Territories as T
+on ET.TerritoryID=T.TerritoryID
+
+Q4-
+SELECT Country from Customers
+Union
+SELECT Country from Suppliers
+
+Q5-
+SELECT Country from Customers
+UNION ALL
+SELECT Country from Suppliers
+ORDER BY Country
+
+Q6-
+SELECT ROUND(UnitPrice,0) FROM Products
+
+Q7-
+SELECT SUM(UnitsInStock) From Products
+
+Q8-
+SELECT OrderID,YEAR(OrderDate) as OrderYear
+From Orders
+
+Q9-
+SELECT OrderID, DATENAME(MONTH,OrderDate) as OrderMonth from Orders
+
+Q10-
+SELECT LEFT(RegionDescription,2) from Region
+
+Q11-
+SELECT City, PostalCode FROM Suppliers
+WHERE ISNUMERIC(PostalCode)=1
+
+Q12-
+SELECT UPPER(LEFT(RegionDescription,1)) from Region
