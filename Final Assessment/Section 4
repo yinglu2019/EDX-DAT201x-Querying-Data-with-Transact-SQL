@@ -1,0 +1,27 @@
+Q1-
+SELECT OrderID, ShippedDate,CHOOSE(MONTH(ShippedDate),'Winter', 'Winter', 'Spring', 'Spring', 'Spring', 'Summer', 'Summer', 'Summer', 'Autumn', 'Autumn', 'Autumn', 'Winter') AS ShippedSeason From Orders
+WHERE ShippedDate is not NULL
+
+Q2-
+SELECT CompanyName, IIF(Fax is not NULL,'outdated','modern') as Status FROM Suppliers
+
+Q3-
+SELECT c.Country, SUM(od.Quantity) as TotalQuantity FROM Customers as c
+JOIN Orders as o on c.CustomerID=o.CustomerID
+JOIN [Order Details] as od on od.OrderID=o.OrderID
+GROUP BY c.Country WITH ROLLUP
+
+Q4-
+SELECT Country,ContactTitle,count(ContactTitle) as Count,
+CASE WHEN Grouping_ID(Country,ContactTitle)=0 THEN ''
+     WHEN Grouping_ID(Country,ContactTitle)=1 THEN 'Subtotal for ' +Country
+END AS Legend
+FROM Customers
+GROUP BY ROLLUP(Country,ContactTitle)
+
+Q5-
+SELECT 'Average Unit Price' as [Per Category],CAST([1] as numeric(10,2)) as [1],CAST([2] as numeric(10,2)) as [2],CAST([3] as numeric(10,2)) as [3],CAST([4] as numeric(10,2)) as[4],CAST([5] as numeric(10,2)) as[5],CAST([6] as numeric(10,2)) as[6],CAST([7] as numeric(10,2)) as[7]
+FROM (SELECT CategoryID,UnitPrice FROM Products) as SourceTable
+PIVOT 
+(AVG(UnitPrice) FOR CategoryID in ([1],[2],[3],[4],[5],[6],[7]))
+as PivotTable
