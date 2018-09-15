@@ -25,3 +25,11 @@ FROM (SELECT CategoryID,UnitPrice FROM Products) as SourceTable
 PIVOT 
 (AVG(UnitPrice) FOR CategoryID in ([1],[2],[3],[4],[5],[6],[7]))
 as PivotTable
+
+Q6-
+INSERT INTO Region(RegionID,RegionDescription)
+Values(5,'Space');
+SELECT * FROM Region
+WHERE RegionID = 5;
+
+Q7-
